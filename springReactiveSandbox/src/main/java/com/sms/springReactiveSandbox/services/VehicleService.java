@@ -1,5 +1,7 @@
 package com.sms.springReactiveSandbox.services;
 
+import org.reactivestreams.Publisher;
+
 import com.sms.springReactiveSandbox.model.Vehicle;
 
 import reactor.core.publisher.Flux;
@@ -9,5 +11,8 @@ public interface VehicleService {
 
 	Mono<Vehicle> getById(String id);
 	Flux<Vehicle> getAll();
+	Mono<Void> deleteAll();
+	Flux<Vehicle> saveAll(Publisher<Vehicle> vehiclePublisher);
 	Flux<Object> raceAllVehiclesStream();
+	Mono<Vehicle> createVehicle(Vehicle vehicle);
 }
