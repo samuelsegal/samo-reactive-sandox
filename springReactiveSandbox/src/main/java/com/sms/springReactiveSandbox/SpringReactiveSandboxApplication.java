@@ -27,7 +27,7 @@ public class SpringReactiveSandboxApplication {
 			repo.deleteAll().subscribe(null, null, () -> {
 				Stream.of(new Vehicle(UUID.randomUUID().toString(), "Jeep", "CJ7"),
 						new Vehicle(UUID.randomUUID().toString(), "MGB", "Sports car"),
-						new Vehicle(UUID.randomUUID().toString(), "Volvo", "Z Germans"),
+						new Vehicle(UUID.randomUUID().toString(), "Volvo", "Made in Sweden, paid by Ford"),
 						new Vehicle(UUID.randomUUID().toString(), "Ford", "pees on Chevy"),
 						new Vehicle(UUID.randomUUID().toString(), "Chevy", "Pees on Ford"))
 						.forEach(v -> repo.save(v).subscribe(lv -> log.info("Created Vehicle: {}", lv)));
