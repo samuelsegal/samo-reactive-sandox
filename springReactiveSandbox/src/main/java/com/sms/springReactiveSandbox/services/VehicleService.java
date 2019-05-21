@@ -15,4 +15,5 @@ public interface VehicleService {
 	Flux<Vehicle> saveAll(Publisher<Vehicle> vehiclePublisher);
 	Flux<Object> raceAllVehiclesStream();
 	Mono<Vehicle> createVehicle(Vehicle vehicle);
+	Publisher<Vehicle> deleteById(String id);
 }

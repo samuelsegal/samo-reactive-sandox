@@ -1,7 +1,7 @@
-package com.sms.springReactiveSandbox.controllers;
+package com.sms.springReactiveSandbox.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sms.springReactiveSandbox.events.VehicleCreatedEvent;
 import com.sms.springReactiveSandbox.model.Vehicle;
 import com.sms.springReactiveSandbox.services.VehicleService;
 
@@ -18,7 +17,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/vehicles")
+@RequestMapping(value = "/vehicles/api", produces=MediaType.APPLICATION_JSON_VALUE)
 public class VehicleController {
 
 	private VehicleService vehicleService;
@@ -29,7 +28,7 @@ public class VehicleController {
 		this.vehicleService = vehicleService;
 	}
 
-	@GetMapping("{id}")
+	@GetMapping("/{id}")
 	public Mono<Vehicle> getById(@PathVariable String id) {
 		return vehicleService.getById(id);
 	}

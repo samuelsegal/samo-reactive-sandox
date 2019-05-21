@@ -17,6 +17,7 @@ import com.sms.springReactiveSandbox.services.VehicleService;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.function.Tuple2;
 
 @Service
 @Slf4j
@@ -26,7 +27,6 @@ public class VehicleServiceImpl implements VehicleService {
 	private ApplicationEventPublisher publisher;
 
 	public VehicleServiceImpl(VehicleReactiveMongoRepository vehicleRepo, ApplicationEventPublisher publisher) {
-		super();
 		this.vehicleRepo = vehicleRepo;
 		this.publisher = publisher;
 	}
@@ -56,11 +56,9 @@ public class VehicleServiceImpl implements VehicleService {
 			Flux<Long> raceTime = Flux.interval(Duration.ofSeconds(time)).take(1);
 			Flux<VehicleRaceEvent> race = Flux
 					.fromStream(Stream.generate(() -> new VehicleRaceEvent(vehicle, Duration.ofSeconds(time))));
-//			Flux<Vehicle> race = Flux
-//					.fromStream(Stream.generate(() -> vehicle));
 
-//			return Flux.zip(raceTime, race).map(Tuple2::getT2);
-			return Flux.zip(raceTime, race);
+			return Flux.zip(raceTime, race).map(Tuple2::getT2);
+			//return Flux.zip(raceTime, race);
 		});
 	}
 
@@ -81,6 +79,12 @@ public class VehicleServiceImpl implements VehicleService {
 			log.debug("sdfgsdfgsdgbsdfg");
 			this.publisher.publishEvent(new VehicleCreatedEvent(v.get()));
 		});
+	}
+
+	@Override
+	public Publisher<Vehicle> deleteById(String id) {
+
+		return vehicleRepo.findById(id).flatMap(v -> vehicleRepo.deleteById(v.getId()).thenReturn(v));
 	}
 
 }
