@@ -3,10 +3,12 @@ port=${1:-8080}
 count=0
 amt=5
 vehicle() {
+	randomword=`perl -e 'open IN, "</usr/share/dict/words";rand($.) < 1 && ($n=$_) while <IN>;print $n'`
 	((count++))
-	echo "posting ${count}"
-	http POST http://localhost:${port}/vehicles/api/create id="random${count}" name="random${count}" description="describe me"
-	if [ "$count" -gt $amt ]; then
+	echo "posting ${randomword}"
+	http POST http://localhost:${port}/vehicles/api/create id="${randomword}" name="${randomword}" description="describe me"
+	if [ "$count" -gt $amt ] 
+		then
 		echo "out"
 		break
 	fi
