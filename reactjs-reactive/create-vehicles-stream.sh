@@ -5,9 +5,8 @@ amt=5
 vehicle() {
 	((count++))
 	echo "posting ${count}"
-	http POST http://localhost:${port}/vehicles/api/create id="random${count}" name="new one" description="describe me"
-	if [ "$count" -gt $amt ] 
-	then
+	http POST http://localhost:${port}/vehicles/api/create id="random${count}" name="random${count}" description="describe me"
+	if [ "$count" -gt $amt ]; then
 		echo "out"
 		break
 	fi

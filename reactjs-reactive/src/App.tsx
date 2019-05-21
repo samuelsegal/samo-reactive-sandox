@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import VehicleListPoll from './components/VehicleListPoll';
 import VehicleListRxJs from './components/VehicleListRxJs';
+import VehicleListWebSocket from './components/VehicleListWebSocket';
 
 const App: React.FC = () => {
 	return (
@@ -11,8 +12,9 @@ const App: React.FC = () => {
 				<img src={logo} className="App-logo" alt="logo" />
 				{
 					//<VehicleListPoll />
+					//<VehicleListRxJs />
 				}
-				<VehicleListRxJs />
+				<VehicleListWebSocket />
 			</header>
 		</div>
 	);
