@@ -23,7 +23,6 @@ public class CaseInsensitiveRequestPredicate implements RequestPredicate{
 		return target.test(new LowerCaseUriServerRequestWrapper(request));
 	}
 	
-	
 }
 class LowerCaseUriServerRequestWrapper extends ServerRequestWrapper{
 

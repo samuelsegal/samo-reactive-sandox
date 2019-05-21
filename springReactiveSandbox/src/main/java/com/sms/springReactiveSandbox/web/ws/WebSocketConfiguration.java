@@ -1,4 +1,4 @@
-package com.sms.springReactiveSandbox.web.config;
+package com.sms.springReactiveSandbox.web.ws;
 
 import java.util.Collections;
 import java.util.concurrent.Executor;
