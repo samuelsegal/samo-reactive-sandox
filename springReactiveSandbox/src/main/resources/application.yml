@@ -1,4 +1,32 @@
-#spring.profiles.active=default
-logging.level.com.sms.springReactiveSandbox=debug
+oidc:
+  issuer-uri: https://dev-548917.okta.com/oauth2/default
+  client-id: 0oamnkle1ThYQGPix356
+  client-secret: Fc9ntBZgcGfzlXxGZTeuFSInOctIBuqgq_WvUIfX
+sms:
+   origins:
+    reactjs: http://localhost:3000
+logging:
+  level:
+    com:
+      sms:
+        springReactiveSandbox: debug
+spring:
+  profiles:
+    active: default
+  security:
+    oauth2:
+      client:
 
-
+        provider:
+          okta: 
+            issuer-uri: ${oidc.issuer-uri}
+            
+        registration:
+          okta:
+            client-id: ${oidc.client-id}
+            client-secret: ${oidc.client-secret}    
+            scope: openid, email, profile
+            
+      resourceserver:
+       jwt:
+          issuer-uri: ${oidc.issuer-uri}

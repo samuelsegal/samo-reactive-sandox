@@ -20,7 +20,7 @@ public class VehicleSseController {
 
 	private final Flux<VehicleCreatedEvent> events;
 	private final ObjectMapper mapper;
-
+	
 	@Autowired
 	public VehicleSseController(VehicleCreatedEventPublisher eventPublisher, ObjectMapper mapper) {
 		super();

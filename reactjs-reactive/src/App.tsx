@@ -1,22 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import VehicleListPoll from './components/VehicleListPoll';
-import VehicleListRxJs from './components/VehicleListRxJs';
-import VehicleListWebSocket from './components/VehicleListWebSocket';
+import Home from './components/Home';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Security, ImplicitCallback } from '@okta/okta-react';
+/*
+ * ouath2 server configuration for okta
+ */
+const config = {
+	issuer: 'https://dev-548917.okta.com/oauth2/default',
+	redirect_uri: window.location.origin + '/implicit/callback',
+	client_id: '0oamnkle1ThYQGPix356',
+};
 
+export interface Auth {
+	login(redirectUri: string): {};
+	logout(redirectUri: string): {};
+	isAuthenticated(): boolean;
+	getAccessToken(): string;
+}
 const App: React.FC = () => {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				{
-					//<VehicleListPoll />
-					//<VehicleListRxJs />
-				}
-				<VehicleListWebSocket />
-			</header>
-		</div>
+		<Router>
+			<Security {...config}>
+				<Route path="/" exact={true} component={Home} />
+				<Route path="/implicit/callback" component={ImplicitCallback} />
+			</Security>
+		</Router>
 	);
 };
 

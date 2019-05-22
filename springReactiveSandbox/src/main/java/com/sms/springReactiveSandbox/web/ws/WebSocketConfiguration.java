@@ -49,6 +49,7 @@ public class WebSocketConfiguration {
 		return session -> {
 			Flux<WebSocketMessage> messageFlux = publish.map(evt -> {
 				try {
+					//TODO: Only send ID back for websockets as they are unsecure
 					return mapper.writeValueAsString(evt.getSource());
 				} catch (JsonProcessingException e) {
 					throw new RuntimeException(e);

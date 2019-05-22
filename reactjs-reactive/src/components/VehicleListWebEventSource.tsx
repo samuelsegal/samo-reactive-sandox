@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
+import { Auth } from '../App';
 interface Vehicle {
 	id: string;
 	name: string;
 	description: string;
 }
 
-interface VehicleListProps {}
+interface VehicleListProps {
+	auth: Auth;
+}
 
 interface VehicleListState {
 	vehicles: Array<Vehicle>;
@@ -37,6 +40,7 @@ class VehicleListEventSource extends Component<VehicleListProps, VehicleListStat
 		const data = await response.json();
 		this.setState({ vehicles: data, isLoading: false });
 
+		//TODO: Research why this does not work with proxy
 		const eventSource = new EventSource('http://localhost:8080/sse/vehicles');
 		eventSource.onopen = (event: any) => console.log('open', event);
 		eventSource.onmessage = (event: any) => {

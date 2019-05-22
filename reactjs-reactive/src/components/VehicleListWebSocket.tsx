@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-
+import { Auth } from '../App';
 interface Vehicle {
 	id: string;
 	name: string;
 	description: string;
 }
 
-interface VehicleListProps {}
+interface VehicleListProps {
+	auth: Auth;
+}
 
 interface VehicleListState {
 	vehicles: Array<Vehicle>;
@@ -25,8 +27,11 @@ class VehicleListWebSocket extends Component<VehicleListProps, VehicleListState>
 	}
 	async componentDidMount() {
 		this.setState({ isLoading: true });
+		const headers = {
+			headers: { Authorization: 'Bearer ' + (await this.props.auth.getAccessToken()) },
+		};
+		const response = await fetch('http://localhost:3000/vehicles', headers);
 
-		const response = await fetch('http://localhost:3000/vehicles');
 		const data = await response.json();
 		this.setState({ vehicles: data, isLoading: false });
 
@@ -37,7 +42,9 @@ class VehicleListWebSocket extends Component<VehicleListProps, VehicleListState>
 		 */
 		const socket = new WebSocket('ws://localhost:3000/ws/vehicles');
 		socket.addEventListener('message', async (event: any) => {
-			const vehicle = JSON.parse(event.data);
+			const vehicle_id = JSON.parse(event.data);
+			const request = await fetch(`http://localhost:8080/vehicles/api/${vehicle_id.id}`, headers);
+			const vehicle = await request.json();
 			let updatedList = this.state.vehicles.concat(vehicle);
 			console.log(`updated list ${updatedList}`);
 			this.setState({ vehicles: updatedList });

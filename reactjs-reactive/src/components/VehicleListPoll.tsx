@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
+import { Auth } from '../App';
 interface Vehicle {
 	id: string;
 	name: string;
 	description: string;
 }
-interface VehicleListProps {}
+interface VehicleListProps {
+	auth: Auth;
+}
 interface VehicleListState {
 	vehicles: Array<Vehicle>;
 	isLoading: boolean;
