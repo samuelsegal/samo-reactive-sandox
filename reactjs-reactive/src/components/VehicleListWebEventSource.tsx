@@ -15,7 +15,7 @@ interface VehicleListState {
 /*
  * Use Web Socket and addEventListener to update existing list with new vehicles as they are created.
  */
-class VehicleListWebSocket extends Component<VehicleListProps, VehicleListState> {
+class VehicleListEventSource extends Component<VehicleListProps, VehicleListState> {
 	constructor(props: VehicleListProps) {
 		super(props);
 		this.state = {
@@ -23,6 +23,13 @@ class VehicleListWebSocket extends Component<VehicleListProps, VehicleListState>
 			isLoading: false,
 		};
 	}
+
+	/*
+	 * Connect an Event Source to the Server Send Event URL /sse/vehicles
+	 * THis will receive events as they are published.
+	 * Similar to web sockets this provides us updates as they are published
+	 * Hence lighter on traffic all around
+	 */
 	async componentDidMount() {
 		this.setState({ isLoading: true });
 
@@ -30,18 +37,14 @@ class VehicleListWebSocket extends Component<VehicleListProps, VehicleListState>
 		const data = await response.json();
 		this.setState({ vehicles: data, isLoading: false });
 
-		/*
-		 * Connect to websocket @/ws/vehicles as defined on webflux server
-		 * listen for updates and add the new vehicle created to the existing list
-		 * Hence: No Need to grab whole list like in rxjs and poll example
-		 */
-		const socket = new WebSocket('ws://localhost:3000/ws/vehicles');
-		socket.addEventListener('message', async (event: any) => {
-			const vehicle = JSON.parse(event.data);
+		const eventSource = new EventSource('http://localhost:8080/sse/vehicles');
+		eventSource.onopen = (event: any) => console.log('open', event);
+		eventSource.onmessage = (event: any) => {
+			const vehicle = JSON.parse(event.data).source;
 			let updatedList = this.state.vehicles.concat(vehicle);
 			console.log(`updated list ${updatedList}`);
 			this.setState({ vehicles: updatedList });
-		});
+		};
 	}
 	render() {
 		const { vehicles, isLoading } = this.state;
@@ -58,4 +61,4 @@ class VehicleListWebSocket extends Component<VehicleListProps, VehicleListState>
 		);
 	}
 }
-export default VehicleListWebSocket;
+export default VehicleListEventSource;

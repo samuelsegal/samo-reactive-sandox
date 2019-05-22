@@ -2,6 +2,7 @@ package com.sms.springReactiveSandbox.web.sse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,7 @@ public class VehicleSseController {
 		this.mapper = mapper;
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping(value = "/sse/vehicles", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
 	public Flux<String> vehicles() {
 		return events.map(vce -> {
