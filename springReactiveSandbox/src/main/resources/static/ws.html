@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Vehicle Notification Client</title>
+</head>
+<body>
+<script>
+	var socket = new WebSocket('ws://localhost:8080/ws/vehicles');
+	socket.addEventListener('message', function(e){
+		window.alert('message from server' + e.data);
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+oidc:
+  issuer-uri: ${REACT_APP_OKTA_ISSUER_URI}
+  client-id: ${REACT_APP_SPRING_REACTIVE_SANDBOX_CLIENT_ID}
+  client-secret: ${REACT_APP_SPRING_REACTIVE_SANDBOX_CLIENT_SECRET}
+sms:
+   origins:
+    reactjs: http://localhost:3000
+logging:
+  level:
+    com:
+      sms:
+        springReactiveSandbox: debug
+spring:
+  profiles:
+    active: default
+  security:
+    oauth2:
+      client:
+
+        provider:
+          okta: 
+            issuer-uri: ${oidc.issuer-uri}
+            
+        registration:
+          okta:
+            client-id: ${oidc.client-id}
+            client-secret: ${oidc.client-secret}    
+            scope: openid, email, profile
+            
+      resourceserver:
+       jwt:
+          issuer-uri: ${oidc.issuer-uri}
