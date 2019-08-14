@@ -15,6 +15,18 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 import com.sms.springReactiveSandbox.util.HttpMethodEnum;
 
+/**
+ * Notes: https://developer.okta.com/blog/2018/09/25/spring-webflux-websockets-react
+ * 
+ * CSRF is enabled in this app, but we don’t enable sending the CSRF header
+ * back because we’re not manipulating data. If you want to POST, PUT, or 
+ * DELETE, you will need to grab the XSRF-TOKEN cookie’s value and send it 
+ * back as a X-XSRF-TOKEN header. 
+ * 
+ * WebSockets can’t be secured. There are WebSocket libraries (e.g., Socket.IO) 
+ * that allow sending an authorization header, but Spring WebFlux doesn’t 
+ * support them.
+ */
 @EnableReactiveMethodSecurity
 @EnableWebFluxSecurity
 public class SecurityConfig {

@@ -7,9 +7,9 @@ import { Security, ImplicitCallback } from '@okta/okta-react';
  * ouath2 server configuration for okta
  */
 const config = {
-	issuer: 'https://dev-548917.okta.com/oauth2/default',
+	issuer: process.env.REACT_APP_OKTA_ISSUER_URI, //dev-548917.okta.com/oauth2/default',
 	redirect_uri: window.location.origin + '/implicit/callback',
-	client_id: '0oamnkle1ThYQGPix356',
+	client_id: process.env.REACT_APP_SPRING_REACTIVE_SANDBOX_CLIENT_ID,
 };
 
 export interface Auth {
@@ -18,7 +18,10 @@ export interface Auth {
 	isAuthenticated(): boolean;
 	getAccessToken(): string;
 }
+
 const App: React.FC = () => {
+	console.log('WTF');
+	console.log(`${config.issuer}`);
 	return (
 		<Router>
 			<Security {...config}>
