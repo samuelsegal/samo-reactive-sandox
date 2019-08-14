@@ -1,7 +1,7 @@
 oidc:
-  issuer-uri: https://dev-548917.okta.com/oauth2/default
-  client-id: 0oamnkle1ThYQGPix356
-  client-secret: Fc9ntBZgcGfzlXxGZTeuFSInOctIBuqgq_WvUIfX
+  issuer-uri: ${OKTA_ISSUER_URI}
+  client-id: ${SPRING_REACTIVE_SANDBOX_CLIENT_ID}
+  client-secret: ${SPRING_REACTIVE_SANDBOX_CLIENT_SECRET}
 sms:
    origins:
     reactjs: http://localhost:3000
