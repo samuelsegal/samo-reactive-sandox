@@ -1,6 +1,6 @@
 # samo-reactive-sandox
 <strong>A Spring reactive sandbox for anything wherever </strong>
-#### Technologies used: 
+#### Technologies demonstrated: 
 * Spring Boot 2  
 * Spring Webflux  
 * Reactjs  
