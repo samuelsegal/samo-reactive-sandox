@@ -13,6 +13,14 @@ reactive sandbox for anything wherever
   http://localhost:8080/login/oauth2/code/okta	
   http://localhost:3000/implicit/callback  
   ```
+* Set following Environment Variable's with Okta security information  
+```
+export REACT_APP_OKTA_ISSUER_URI=https://dev-548917.okta.com/oauth2/default
+export REACT_APP_SPRING_REACTIVE_SANDBOX_CLIENT_ID={client-id)
+export REACT_APP_SPRING_REACTIVE_SANDBOX_CLIENT_SECRET={client-secret}
+```  
+
+## OKTA web application configuration example:    
 ![sec](resources/images/sec.png)  
 
 
