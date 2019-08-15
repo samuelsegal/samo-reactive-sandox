@@ -19,6 +19,7 @@
   http://localhost:3000/implicit/callback  
   ```
 * Set following Environment Variable's with Okta security information  
+  - THere are many ways to set env variables in Java, I use .bash_profile, and  https://github.com/ersiner/osx-env-sync to sync environment variables with eclipse  
 ```
 export REACT_APP_OKTA_ISSUER_URI=https://dev-548917.okta.com/oauth2/default
 export REACT_APP_SPRING_REACTIVE_SANDBOX_CLIENT_ID={client-id)
