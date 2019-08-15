@@ -1,7 +1,12 @@
 # samo-reactive-sandox
-reactive sandbox for anything wherever 
-
-# Secrutiy Configuration
+<strong>A Spring reactive sandbox for anything wherever </strong>
+#### Technologies used: 
+* Spring Boot 2  
+* Spring Webflux  
+* Reactjs  
+* Spring 5 Security  
+* Okta
+### Secrutiy Configuration
 * Set up a web application through [Okta account] (https://developer.okta.com/)  
 * Allowed Grant Types:  
   ```
