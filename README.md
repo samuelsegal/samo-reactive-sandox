@@ -3,7 +3,7 @@
 #### Technologies demonstrated: 
 * Spring Boot 2  
 * Spring Webflux  
-* Reactjs  
+* Reactjs with Typescript  
 * Spring 5 Security  
 * Okta
 ### Secrutiy Configuration
