@@ -3,6 +3,8 @@
 #### Technologies demonstrated: 
 * Spring Boot 2  
 * Spring Webflux  
+* spring-boot-starter-data-mongodb-reactive
+* Mongodb  
 * Reactjs with Typescript  
 * Spring 5 Security  
 * Okta
