@@ -1,6 +1,9 @@
 # samo-reactive-sandox
 <strong>A Spring reactive sandbox for anything wherever </strong>  
-For demonstration purposes only. 
+#### For demonstration purposes only. Objectives: 
+* Secure a Reactive Services using Spring webflux and security 5  
+* Include a client application to utilize services and server events in a secure fashion using JWT  
+[..., 'More to come']   
 #### Technologies demonstrated: 
 * Spring Boot 2  
 * Spring Webflux  
