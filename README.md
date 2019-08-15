@@ -3,7 +3,7 @@
 #### For demonstration / reference purposes only. Objectives: 
 * Secure a Reactive Services using Spring webflux and security 5  
 * Include a client application to utilize services and server events in a secure fashion using JWT  
-* [..., 'More to come']   
+* [... 'More to come']   
 #### Technologies demonstrated: 
 * Spring Boot 2  
 * Spring Webflux  
