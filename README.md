@@ -1,8 +1,11 @@
 # samo-reactive-sandox
-<strong>A Spring reactive sandbox for anything wherever </strong>
+<strong>A Spring reactive sandbox for anything wherever </strong>  
+For demonstration purposes only. 
 #### Technologies demonstrated: 
 * Spring Boot 2  
 * Spring Webflux  
+* WebSockets 
+* SSE Events
 * spring-boot-starter-data-mongodb-reactive
 * Mongodb  
 * Reactjs with Typescript  
